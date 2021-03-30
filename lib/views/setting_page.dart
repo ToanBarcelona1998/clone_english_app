@@ -3,6 +3,8 @@ import 'package:clone_english_app/blocs/global_blocs/them_bloc/theme_event.dart'
 import 'package:clone_english_app/blocs/global_blocs/them_bloc/theme_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:share/share.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingPage extends StatefulWidget {
   @override
@@ -10,15 +12,14 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
-  String _language = "Tiếng Việt";
-  bool checkTheme=false;
-
+  String _language = "Vietnamese";
+  bool checkTheme = false;
   @override
   Widget build(BuildContext context) {
-    final theme=BlocProvider.of<ThemeBloc>(context);
+    final theme = BlocProvider.of<ThemeBloc>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text("Setting"),
+        title: Text("Cài đặt"),
         centerTitle: true,
         leading: BackButton(
           onPressed: () {
@@ -47,7 +48,7 @@ class _SettingPageState extends State<SettingPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Language"),
+                          Text("Ngôn ngữ"),
                           SizedBox(
                             height: 8,
                           ),
@@ -55,13 +56,13 @@ class _SettingPageState extends State<SettingPage> {
                             width: double.infinity,
                             child: DropdownButton(
                               value: _language,
-                              items: <String>['Tiếng Việt', 'English']
+                              items: <String>['Vietnamese', 'English']
                                   .map<DropdownMenuItem<String>>(
                                     (String value) => DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(value),
-                                ),
-                              )
+                                      value: value,
+                                      child: Text(value),
+                                    ),
+                                  )
                                   .toList(),
                               onChanged: (value) {
                                 _language = value;
@@ -91,18 +92,21 @@ class _SettingPageState extends State<SettingPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Dark mode"),
+                          Text("Chế độ ban đêm"),
                           SizedBox(
                             height: 8,
                           ),
-                          BlocBuilder<ThemeBloc,ThemeChangeState>(
-                            builder: (context,state)=>InkWell(
+                          BlocBuilder<ThemeBloc, ThemeChangeState>(
+                            builder: (context, state) => InkWell(
                               onTap: () {
-                                theme.add(OnThemeEvent(lightMode: state.themeState.isLightMode));
+                                theme.add(OnThemeEvent(
+                                    lightMode: state.themeState.isLightMode));
                               },
                               child: Container(
                                 width: double.infinity,
-                                child: state.themeState.isLightMode?Text("On"):Text("Off"),
+                                child: state.themeState.isLightMode
+                                    ? Text("Bật")
+                                    : Text("Tắt"),
                               ),
                             ),
                           ),
@@ -129,7 +133,7 @@ class _SettingPageState extends State<SettingPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Sounds"),
+                          Text("Âm thanh"),
                           SizedBox(
                             height: 8,
                           ),
@@ -137,7 +141,7 @@ class _SettingPageState extends State<SettingPage> {
                             onTap: () {},
                             child: Container(
                               width: double.infinity,
-                              child: Text("Off"),
+                              child: Text("Tắt"),
                             ),
                           ),
                         ],
@@ -161,8 +165,14 @@ class _SettingPageState extends State<SettingPage> {
                     ),
                     Expanded(
                       child: InkWell(
-                        onTap: () {},
-                        child: Text("Rating"),
+                        onTap: () async {
+                          String url =
+                              "https://play.google.com/store/apps/details?id=grammar.englishgrammarpractice&hl=vi&gl=US";
+                          await canLaunch(url)
+                              ? await launch(url)
+                              : throw "Could not launch $url";
+                        },
+                        child: Text("Đánh giá"),
                       ),
                     ),
                   ],
@@ -184,7 +194,7 @@ class _SettingPageState extends State<SettingPage> {
                     Expanded(
                       child: InkWell(
                         onTap: () {},
-                        child: Text("Feedback"),
+                        child: Text("Phản hồi"),
                       ),
                     ),
                   ],
@@ -205,8 +215,11 @@ class _SettingPageState extends State<SettingPage> {
                     ),
                     Expanded(
                       child: InkWell(
-                        onTap: () {},
-                        child: Text("Share"),
+                        onTap: () {
+                          Share.share(
+                              "https://play.google.com/store/apps/details?id=grammar.englishgrammarpractice&hl=vi&gl=US");
+                        },
+                        child: Text("Chia sẻ"),
                       ),
                     ),
                   ],
@@ -219,4 +232,3 @@ class _SettingPageState extends State<SettingPage> {
     );
   }
 }
-

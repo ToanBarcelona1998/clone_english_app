@@ -1,8 +1,9 @@
-import 'package:clone_english_app/blocs/global_blocs/them_bloc/theme_bloc.dart';
-import 'package:clone_english_app/blocs/global_blocs/them_bloc/theme_event.dart';
+import 'dart:convert';
+
+import 'package:clone_english_app/models/enitys/model_question.dart';
 import 'package:clone_english_app/views/setting_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -43,17 +44,20 @@ class HomePage extends StatelessWidget {
                                   ),
                                   Expanded(
                                     child: Container(
-                                      child: Text("Grammar checklist"),
+                                      child: Text("Lộ trình"),
                                     ),
                                   ),
                                   Text("0%"),
                                   SizedBox(
                                     width: 8,
                                   ),
-                                  Icon(
-                                    Icons.panorama_fish_eye_outlined,
-                                    color: Colors.grey,
-                                  ),
+                                  CircularPercentIndicator(
+                                    radius: 30,
+                                    lineWidth: 2.0,
+                                    percent: 0.4,
+                                    backgroundColor: Colors.grey,
+                                    progressColor: Colors.red,
+                                  )
                                 ],
                               ),
                             ),
@@ -80,7 +84,7 @@ class HomePage extends StatelessWidget {
                                   ),
                                   Expanded(
                                     child: Container(
-                                      child: Text("Unlimited Test"),
+                                      child: Text("Trắc nghiệm nhanh"),
                                     ),
                                   ),
                                   Text("0"),
@@ -117,7 +121,7 @@ class HomePage extends StatelessWidget {
                                   ),
                                   Expanded(
                                     child: Container(
-                                      child: Text("Topics"),
+                                      child: Text("Chủ đề"),
                                     ),
                                   ),
                                 ],
@@ -146,7 +150,7 @@ class HomePage extends StatelessWidget {
                                   ),
                                   Expanded(
                                     child: Container(
-                                      child: Text("Mix Test"),
+                                      child: Text("Bài kiểm tra"),
                                     ),
                                   ),
                                 ],

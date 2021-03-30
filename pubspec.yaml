@@ -28,7 +28,10 @@ dependencies:
   path_provider:
   equatable: ^1.1.1
   easy_localization:
-
+  percent_indicator:
+  share:
+  url_launcher:
+  flutter_email_sender:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -56,6 +59,50 @@ flutter:
      - assets/images/ic_failed.png
      - assets/images/ic_passed.png
      - assets/images/ic_vote.png
+     - assets/jsons/adjective_adverbs_q_en.json
+     - assets/jsons/adjective_adverbs_q_vi.json
+     - assets/jsons/auxiliary_verbs_q_en.json
+     - assets/jsons/auxiliary_verbs_q_vi.json
+     - assets/jsons/comparisons_q_en.json
+     - assets/jsons/comparisons_q_vi.json
+     - assets/jsons/conditional_sentences_q_en.json
+     - assets/jsons/conditional_sentences_q_vi.json
+     - assets/jsons/conjunctions_q_en.json
+     - assets/jsons/conjunctions_q_vi.json
+     - assets/jsons/gerund_q_en.json
+     - assets/jsons/gerund_q_vi.json
+     - assets/jsons/model_verbs_q_en.json
+     - assets/jsons/model_verbs_q_vi.json
+     - assets/jsons/nouns_q_en.json
+     - assets/jsons/nouns_q_vi.json
+     - assets/jsons/passive_voice_q_en.json
+     - assets/jsons/passive_voice_q_vi.json
+     - assets/jsons/phrasal_verbs_q_en.json
+     - assets/jsons/phrasal_verbs_q_vi.json
+     - assets/jsons/prepositions_q_en.json
+     - assets/jsons/prepositions_q_vi.json
+     - assets/jsons/pronouns_q_en.json
+     - assets/jsons/pronouns_q_vi.json
+     - assets/jsons/quantifiers_q_en.json
+     - assets/jsons/quantifiers_q_vi.json
+     - assets/jsons/questions_q_en.json
+     - assets/jsons/questions_q_vi.json
+     - assets/jsons/relative_clause_q_en.json
+     - assets/jsons/relative_clause_q_vi.json
+     - assets/jsons/reported_speech_q_en.json
+     - assets/jsons/reported_speech_q_vi.json
+     - assets/jsons/tag_questions_q_en.json
+     - assets/jsons/tag_questions_q_vi.json
+     - assets/jsons/tenses_future_q_en.json
+     - assets/jsons/tenses_future_q_vi.json
+     - assets/jsons/tenses_past_q_en.json
+     - assets/jsons/tenses_past_q_vi.json
+     - assets/jsons/tenses_present_q_en.json
+     - assets/jsons/tenses_present_q_vi.json
+     - assets/jsons/verbs_q_en.json
+     - assets/jsons/verbs_q_vi.json
+     - assets/jsons/wishes_q_en.json
+     - assets/jsons/wishes_q_vi.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
