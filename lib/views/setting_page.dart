@@ -1,10 +1,21 @@
+import 'package:clone_english_app/blocs/global_blocs/them_bloc/theme_bloc.dart';
+import 'package:clone_english_app/blocs/global_blocs/them_bloc/theme_event.dart';
+import 'package:clone_english_app/blocs/global_blocs/them_bloc/theme_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SettingPage extends StatelessWidget {
+class SettingPage extends StatefulWidget {
+  @override
+  _SettingPageState createState() => _SettingPageState();
+}
+
+class _SettingPageState extends State<SettingPage> {
   String _language = "Tiếng Việt";
+  bool checkTheme=false;
 
   @override
   Widget build(BuildContext context) {
+    final theme=BlocProvider.of<ThemeBloc>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text("Setting"),
@@ -40,31 +51,23 @@ class SettingPage extends StatelessWidget {
                           SizedBox(
                             height: 8,
                           ),
-                          DropdownButton(
-                            value: _language,
-                            items: <String>['Tiếng Việt', 'English']
-                                .map<DropdownMenuItem<String>>(
-                                  (String value) => DropdownMenuItem<String>(
-                                    value: value,
-                                    child: Text(value),
-                                  ),
-                                )
-                                .toList(),
-                            onChanged: (value) {
-                              _language=value;
-                            },
+                          Container(
+                            width: double.infinity,
+                            child: DropdownButton(
+                              value: _language,
+                              items: <String>['Tiếng Việt', 'English']
+                                  .map<DropdownMenuItem<String>>(
+                                    (String value) => DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                ),
+                              )
+                                  .toList(),
+                              onChanged: (value) {
+                                _language = value;
+                              },
+                            ),
                           ),
-                          // InkWell(
-                          //   onTap: (){},
-                          //   child: Row(
-                          //     children: [
-                          //       Text("English"),
-                          //       SizedBox(width: 16,),
-                          //       Icon(Icons.arrow_drop_down),
-                          //     ],
-                          //   ),
-                          // ),
-                          // Divider(color: Colors.grey,),
                         ],
                       ),
                     ),
@@ -85,19 +88,27 @@ class SettingPage extends StatelessWidget {
                       width: 12,
                     ),
                     Expanded(
-                        child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Dark mode"),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        InkWell(
-                          onTap: () {},
-                          child: Text("Off"),
-                        ),
-                      ],
-                    )),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Dark mode"),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          BlocBuilder<ThemeBloc,ThemeChangeState>(
+                            builder: (context,state)=>InkWell(
+                              onTap: () {
+                                theme.add(OnThemeEvent(lightMode: state.themeState.isLightMode));
+                              },
+                              child: Container(
+                                width: double.infinity,
+                                child: state.themeState.isLightMode?Text("On"):Text("Off"),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -115,19 +126,23 @@ class SettingPage extends StatelessWidget {
                       width: 12,
                     ),
                     Expanded(
-                        child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Sounds"),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        InkWell(
-                          onTap: () {},
-                          child: Text("Off"),
-                        ),
-                      ],
-                    )),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Sounds"),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          InkWell(
+                            onTap: () {},
+                            child: Container(
+                              width: double.infinity,
+                              child: Text("Off"),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -144,7 +159,12 @@ class SettingPage extends StatelessWidget {
                     SizedBox(
                       width: 12,
                     ),
-                    Expanded(child: Text("Rating")),
+                    Expanded(
+                      child: InkWell(
+                        onTap: () {},
+                        child: Text("Rating"),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -161,7 +181,12 @@ class SettingPage extends StatelessWidget {
                     SizedBox(
                       width: 12,
                     ),
-                    Expanded(child: Text("Feedback")),
+                    Expanded(
+                      child: InkWell(
+                        onTap: () {},
+                        child: Text("Feedback"),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -178,7 +203,12 @@ class SettingPage extends StatelessWidget {
                     SizedBox(
                       width: 12,
                     ),
-                    Expanded(child: Text("Share")),
+                    Expanded(
+                      child: InkWell(
+                        onTap: () {},
+                        child: Text("Share"),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -189,3 +219,4 @@ class SettingPage extends StatelessWidget {
     );
   }
 }
+

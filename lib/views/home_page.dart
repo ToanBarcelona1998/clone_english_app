@@ -1,5 +1,8 @@
+import 'package:clone_english_app/blocs/global_blocs/them_bloc/theme_bloc.dart';
+import 'package:clone_english_app/blocs/global_blocs/them_bloc/theme_event.dart';
 import 'package:clone_english_app/views/setting_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -21,7 +24,8 @@ class HomePage extends StatelessWidget {
                       child: Column(
                         children: [
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                            },
                             child: Container(
                               color: Colors.black12,
                               width: double.infinity,

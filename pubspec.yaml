@@ -23,6 +23,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_bloc:
+  hydrated_bloc:
+  path_provider:
+  equatable: ^1.1.1
+  easy_localization:
 
 
   # The following adds the Cupertino Icons font to your application.
